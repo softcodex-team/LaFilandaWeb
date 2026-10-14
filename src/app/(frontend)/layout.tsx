@@ -16,6 +16,9 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
+// Le pagine leggono dal database, che non esiste durante la build del Docker: rendering a richiesta
+export const dynamic = 'force-dynamic'
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 

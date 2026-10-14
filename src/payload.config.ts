@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { migrations } from './migrations'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -58,6 +59,8 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: postgresAdapter({
+    // Applica le migrazioni all'avvio del server
+    prodMigrations: migrations,
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },

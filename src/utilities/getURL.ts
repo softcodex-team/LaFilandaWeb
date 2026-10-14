@@ -2,6 +2,7 @@ import canUseDOM from './canUseDOM'
 
 export const getServerSideURL = () => {
   return (
+    process.env.SERVER_URL ||
     process.env.NEXT_PUBLIC_SERVER_URL ||
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
@@ -22,5 +23,6 @@ export const getClientSideURL = () => {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   }
 
-  return process.env.NEXT_PUBLIC_SERVER_URL || ''
+  return process.env.SERVER_URL ||
+    process.env.NEXT_PUBLIC_SERVER_URL || ''
 }
